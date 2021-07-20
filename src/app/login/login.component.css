@@ -1,0 +1,34 @@
+.main-body{
+    background-color: #fcbaba;
+    width: 100vw;
+    height: 100vh;
+}
+
+.mainhead{
+    text-transform: uppercase;
+    font-size: 25px;
+}
+
+.innerhead{
+    color: red;
+}
+
+.loginplate{
+    background-color: white;
+    height: 50vh;
+    border-radius: 10px;
+    border: 3px solid red;
+}
+
+.userone{
+    width: 100%;
+    height: 45px;
+    border-radius: 10px;
+    border:3px solid red;
+    margin: 10px 0px;
+    padding-left: 15px;
+}
+
+.forgotpw{
+    font-size: small;
+}
