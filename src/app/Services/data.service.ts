@@ -54,4 +54,42 @@ export class DataService {
     }
   }
 
+  deposit(acno:any,pswd:any,amt:any){
+    var amount = parseInt(amt);
+    let accDetails = this.user
+    if(acno in accDetails){
+      if(pswd == accDetails[acno]["password"]){
+        accDetails[acno]["balance"] += amount;
+        return accDetails[acno]["balance"]
+      } else {
+        alert("Incorrect Password")
+      }
+    } else {
+      alert("Invalid User")
+    }
+  }
+
+
+  withdrawal(acno:any,pswd:any,amt:any){
+    var amount = parseInt(amt);
+    let accDetails = this.user
+    if(acno in accDetails){
+      if(pswd == accDetails[acno]["password"]){
+        if(accDetails[acno]["balance"]>amount){
+          accDetails[acno]["balance"] -= amount
+          return accDetails[acno]["balance"]
+        } else {
+          alert("Insufficient Balance")
+          return false
+        }
+      } else {
+        alert("Incorrect Password")
+        return false
+      }
+    } else {
+      alert("Invalid User")
+      return false
+    }
+  }
+
 }

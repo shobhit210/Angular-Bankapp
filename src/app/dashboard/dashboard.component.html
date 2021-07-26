@@ -1,1 +1,41 @@
-<p>dashboard works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4"><h2>Welcome User</h2></div>
+        <div class="col-4"></div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <h4>Deposit Form</h4>
+            <form (ngSubmit)=deposit()>
+                <input type="text" name = "acno" placeholder="Enter Account Number" [(ngModel)]="acno">
+                <input type="text" name = "pswd" placeholder="Enter Password" [(ngModel)]="pswd">
+                <input type="text" name = "amt" placeholder="Enter Amount" [(ngModel)]="amt"><br>
+                <button type = "submit">Deposit</button>
+            </form>
+
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <h4>Withdrawal Form</h4>
+            <form (ngSubmit)=withdrawal()>
+                <input type="text" name = "acno1" placeholder="Enter Account Number" [(ngModel)]="acno1">
+                <input type="text" name = "pswd1" placeholder="Enter Password" [(ngModel)]="pswd1">
+                <input type="text" name = "amt1" placeholder="Enter Amount" [(ngModel)]="amt1"><br>
+                <button type ="submit">Withdrawal</button>
+            </form>
+
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
