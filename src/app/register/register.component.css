@@ -15,7 +15,7 @@
 
 .loginplate{
     background-color: white;
-    height: 60vh;
+    height: 70vh;
     border-radius: 10px;
     border: 3px solid red;
 }
@@ -27,4 +27,8 @@
     border:3px solid red;
     margin: 10px 0px;
     padding-left: 15px;
+}
+
+.error{
+    color:red;
 }

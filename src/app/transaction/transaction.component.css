@@ -1,0 +1,16 @@
+h1{
+    text-align: center;
+    color: seagreen;
+    margin: 50px;
+}
+
+table{
+    margin-left: 850px;
+    color: red;
+    border: royalblue;
+    border-width: 2px;
+}
+
+body{
+    text-align: center;
+}
