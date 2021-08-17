@@ -14,13 +14,13 @@ export class DashboardComponent implements OnInit {
   depositForm = this.fb.group({
     acno: ['', [Validators.required, Validators.minLength(4), Validators.pattern('[0-9]*')]],
     amt: ['', [Validators.required, Validators.pattern('[0-9]*')]],
-    pswd: ['', [Validators.required, Validators.pattern('[0-9a-zA-Z]')]]
+    pswd: ['', [Validators.required, Validators.pattern('[0-9a-zA-Z]*')]]
   })
 
   withdrawForm = this.fb.group({
     acno: ['', [Validators.required, Validators.minLength(4), Validators.pattern('[0-9]*')]],
     amt: ['', [Validators.required, Validators.pattern('[0-9]*')]],
-    pswd: ['', [Validators.required, Validators.pattern('[0-9a-zA-Z]')]]
+    pswd: ['', [Validators.required, Validators.pattern('[0-9a-zA-Z]*')]]
   })
 
   user=this.ds.currentUser

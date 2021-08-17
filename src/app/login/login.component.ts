@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   loginForm = this.fb.group({
     acno: ['', [Validators.required, Validators.minLength(4), Validators.pattern('[0-9]*')]],
-    pswd: ['', [Validators.required, Validators.pattern('[0-9a-zA-Z]')]]
+    pswd: ['', [Validators.required, Validators.pattern('[0-9a-zA-Z]*')]]
   })
 
   constructor(private router: Router, private ds: DataService, private fb: FormBuilder) { }
@@ -80,14 +80,17 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       var accnum = this.loginForm.value.acno;
       var paswrd = this.loginForm.value.pswd;
-      var result = this.ds.login(accnum, paswrd)
-
-      if (result) {
-        alert("Login Successful")
-        this.router.navigateByUrl("dashboard")
+      this.ds.login(accnum, paswrd)
+      .subscribe((result:any)=>{
+        if (result) {
+          alert("Login Successful")
+          this.router.navigateByUrl("dashboard")
+        }
+      },
+      (result)=>{
+        alert(result.error.message)
       }
-
-      // alert("Login Clicked");
+      )
     } else {
       alert("Invalid Form")
     }

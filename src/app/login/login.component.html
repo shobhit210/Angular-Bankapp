@@ -23,10 +23,10 @@
                 <div class="col-4">
                                         
                     <input type="text" class="userone" name="acno" formControlName="acno" placeholder="Enter Account Number">
-                    <div *ngIf="this.loginForm.get('acno')?.touched || this.loginForm.get('acno')?.dirty && this.loginForm.get('acno')?.errors" class="error">Invalid Account Number</div>
+                    <div *ngIf="(this.loginForm.get('acno')?.touched || this.loginForm.get('acno')?.dirty) && this.loginForm.get('acno')?.errors" class="error">Invalid Account Number</div>
                     
                     <input type="password" class="userone" name="pswd" formControlName="pswd" placeholder="Enter Password">
-                    <div *ngIf="this.loginForm.get('pswd')?.touched || this.loginForm.get('pswd')?.dirty && this.loginForm.get('pswd')?.errors" class="error">Invalid Password</div>
+                    <div *ngIf="(this.loginForm.get('pswd')?.touched || this.loginForm.get('pswd')?.dirty) && this.loginForm.get('pswd')?.errors" class="error">Invalid Password</div>
                     <p class="forgotpw"><a href="">Forgot Password</a></p>
 
                 </div>

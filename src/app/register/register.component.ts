@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
   registerForm = this.fb.group({
     acno: ['', [Validators.required, Validators.minLength(4), Validators.pattern('[0-9]*')]],
     uname: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
-    pswd: ['', [Validators.required, Validators.pattern('[0-9a-zA-Z]')]]
+    pswd: ['', [Validators.required, Validators.pattern('[0-9a-zA-Z]*')]]
   })
 
 
@@ -30,18 +30,26 @@ export class RegisterComponent implements OnInit {
       var uname = this.registerForm.value.uname;
       var acno = this.registerForm.value.acno;
       var pswd = this.registerForm.value.pswd;
-      var result = this.ds.register(acno, uname, pswd)
+      this.ds.register(acno, uname, pswd)
+        .subscribe((result: any) => {
+          if (result) {
+            alert(result.message)
+            this.router.navigateByUrl("")
+          } else {
+            alert("User Already Exists. Please Log In")
+            this.router.navigateByUrl("")
+          }
+        },
+          (result) => {
+            alert(result.error.message)
+            this.router.navigateByUrl("")
+          }
+        )
 
-      if (result) {
-        alert("register Successful")
-        this.router.navigateByUrl("")
-      } else {
-        alert("User Already Exists. Please Log In")
-        this.router.navigateByUrl("")
-      }
     } else {
       alert("Invalid Form");
     }
-
   }
+
 }
+

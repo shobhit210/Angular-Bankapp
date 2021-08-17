@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -16,7 +17,7 @@ export class DataService {
     1005: { acno: 1005, uname: "gargi", password: "userfive", balance: 1000, transaction: [] }
   }
 
-  constructor() {
+  constructor(private http : HttpClient) {
     this.getDetails()
   }
 
@@ -53,45 +54,61 @@ export class DataService {
 
   register(acno: any, uname: any, password: any) {
 
-    let accDetails = this.user;
-
-    if (acno in accDetails) {
-      alert("User Exists. Please log in")
-      return false;
-    } else {
-      accDetails[acno] = {
-        acno,
-        uname,
-        password,
-        balance: 0,
-        transaction:[]
-      }
-      this.saveDetails()
-      return true;
+    const data={
+      acno,
+      uname,
+      password
     }
+
+    return this.http.post("http://localhost:3000/register",data);
+
+    // let accDetails = this.user;
+
+    // if (acno in accDetails) {
+    //   alert("User Exists. Please log in")
+    //   return false;
+    // } else {
+    //   accDetails[acno] = {
+    //     acno,
+    //     uname,
+    //     password,
+    //     balance: 0,
+    //     transaction:[]
+    //   }
+    //   this.saveDetails()
+    //   return true;
+    // }
 
 
   }
 
   login(acno: any, pswd: any) {
 
-    let accDetails = this.user;
-
-    if (acno in accDetails) {
-      if (pswd == accDetails[acno]["password"]) {
-        this.currentUser = accDetails[acno]["uname"]
-        this.currentAcc=acno;
-        this.saveDetails()
-        return true
-
-      } else {
-        alert("Incorrect Password")
-        return false
-      }
-    } else {
-      alert("Invalid account number")
-      return false
+    const data={
+      acno,
+      pswd
     }
+
+    return this.http.post("http://localhost:3000/login",data);
+
+
+    // let accDetails = this.user;
+
+    // if (acno in accDetails) {
+    //   if (pswd == accDetails[acno]["password"]) {
+    //     this.currentUser = accDetails[acno]["uname"]
+    //     this.currentAcc=acno;
+    //     this.saveDetails()
+    //     return true
+
+    //   } else {
+    //     alert("Incorrect Password")
+    //     return false
+    //   }
+    // } else {
+    //   alert("Invalid account number")
+    //   return false
+    // }
   }
 
   deposit(acno: any, pswd: any, amt: any) {
