@@ -84,6 +84,8 @@ export class LoginComponent implements OnInit {
       .subscribe((result:any)=>{
         if (result) {
           alert("Login Successful")
+          localStorage.setItem("userName",result.userName)
+          localStorage.setItem("currentAcc",result.currentAcc)
           this.router.navigateByUrl("dashboard")
         }
       },

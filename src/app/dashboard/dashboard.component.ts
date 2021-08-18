@@ -9,7 +9,7 @@ import { DataService } from '../Services/data.service';
 })
 export class DashboardComponent implements OnInit {
 
-  
+
 
   depositForm = this.fb.group({
     acno: ['', [Validators.required, Validators.minLength(4), Validators.pattern('[0-9]*')]],
@@ -23,9 +23,11 @@ export class DashboardComponent implements OnInit {
     pswd: ['', [Validators.required, Validators.pattern('[0-9a-zA-Z]*')]]
   })
 
-  user=this.ds.currentUser
+  userName: any
 
-  constructor(private ds: DataService, private fb: FormBuilder) { }
+  constructor(private ds: DataService, private fb: FormBuilder) {
+    this.userName = localStorage.getItem("userName")
+  }
 
   ngOnInit(): void {
   }
@@ -37,11 +39,16 @@ export class DashboardComponent implements OnInit {
       var pswd = this.depositForm.value.pswd
       var amt = this.depositForm.value.amt
 
-      var result = this.ds.deposit(acno, pswd, amt)
-
-      if (result) {
-        alert("Amount " + amt + " credited. New balance is: " + result)
-      }
+      this.ds.deposit(acno, pswd, amt)
+        .subscribe((result: any) => {
+          if (result) {
+            alert(result.message)
+          }
+        },
+          (result) => {
+            alert(result.error.message)
+          }
+        )
     } else {
       alert("Invalid Form");
     }
@@ -52,15 +59,21 @@ export class DashboardComponent implements OnInit {
   withdrawal() {
 
     if (this.withdrawForm.valid) {
-      var acno = this.withdrawForm.value.acno1
-      var pswd = this.withdrawForm.value.pswd1
-      var amt = this.withdrawForm.value.amt1
+      var acno = this.withdrawForm.value.acno
+      var pswd = this.withdrawForm.value.pswd
+      var amt = this.withdrawForm.value.amt
 
-      var result = this.ds.withdrawal(acno, pswd, amt)
-
-      if (result) {
-        alert("Amount " + amt + " withdrawan. New balance is: " + result)
-      }
+      this.ds.withdrawal(acno, pswd, amt)
+      .subscribe((result: any) => {
+        if (result) {
+          alert(result.message)
+        }
+      },
+        (result) => {
+          alert(result.error.message)
+        }
+      )
+      
     } else {
       alert("Invalid Form");
     }
