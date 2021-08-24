@@ -67,15 +67,27 @@
                     <div *ngIf="(this.withdrawForm.get('amt')?.touched || this.withdrawForm.get('amt')?.dirty) && this.withdrawForm.get('amt')?.errors"
                         class="error">Invalid Amount</div>
 
-                        <div class="row">
-                            <div class="col-4"></div>
-                            <div class="col-4 d-flex justify-content-center">
-                                <button type="submit" class="btn btn-outline-danger mb-2">Withdrawal</button>
-                            </div>
-                            <div class="col-4"></div>
+                    <div class="row">
+                        <div class="col-4"></div>
+                        <div class="col-4 d-flex justify-content-center">
+                            <button type="submit" class="btn btn-outline-danger mb-2">Withdrawal</button>
                         </div>
+                        <div class="col-4"></div>
+                    </div>
                 </form>
 
+            </div>
+            <div class="col-4"></div>
+        </div>
+    </div>
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4 bottom">
+            <app-delete-confirmation (onDelete)="onDelete($event)" [item]="acno"></app-delete-confirmation>
+            <br><br>
+            <button class="btn btn-danger" id="b1" (click)="DeleteAcc()">Delete Account</button>
             </div>
             <div class="col-4"></div>
         </div>
