@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { DataService } from '../Services/data.service';
 
 @Component({
@@ -27,7 +28,7 @@ export class DashboardComponent implements OnInit {
   acno:any
   
 
-  constructor(private ds: DataService, private fb: FormBuilder) {
+  constructor(private ds: DataService, private fb: FormBuilder, private router:Router) {
     this.userName = localStorage.getItem("userName")
   }
 
@@ -92,11 +93,16 @@ export class DashboardComponent implements OnInit {
     .subscribe((result:any)=>{
       if(result){
         alert(result.message)
+        this.router.navigateByUrl("")
       }
     },
     (result)=>{
       alert(result.error.message)
     })
+  }
+
+  onCancel(){
+    this.acno=""
   }
 
 }

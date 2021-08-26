@@ -85,7 +85,7 @@
         <div class="row">
             <div class="col-4"></div>
             <div class="col-4 bottom">
-            <app-delete-confirmation (onDelete)="onDelete($event)" [item]="acno"></app-delete-confirmation>
+            <app-delete-confirmation (onCancel)="onCancel()" (onDelete)="onDelete($event)" [item]="acno"></app-delete-confirmation>
             <br><br>
             <button class="btn btn-danger" id="b1" (click)="DeleteAcc()">Delete Account</button>
             </div>
